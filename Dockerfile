@@ -14,17 +14,18 @@ RUN install-php-extensions \
     pdo_mysql \
     session \
     tokenizer \
-    xml
+    xml \
+    zip
 
 COPY . /app
 
 RUN apt-get update
-RUN apt-get -y --no-install-recommends install npm git
+RUN apt-get -y --no-install-recommends install npm git unzip
 
 COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
-RUN composer install --no-scripts -vvv
+RUN composer install --no-scripts
 
-RUN php artisan migrate
+RUN php artisan migrate -v
 RUN npm install
 RUN npm run build
 
