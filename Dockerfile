@@ -25,7 +25,6 @@ RUN apt-get -y --no-install-recommends install npm git unzip
 COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
 RUN composer install --no-scripts
 
-RUN php artisan migrate -v
 RUN npm install
 RUN npm run build
 
