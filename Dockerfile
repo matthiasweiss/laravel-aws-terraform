@@ -19,7 +19,7 @@ RUN install-php-extensions \
 COPY . /app
 
 RUN apt-get update
-RUN apt-get -y --no-install-recommends install npm
+RUN apt-get -y --no-install-recommends install npm git
 
 COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
 RUN composer install --no-scripts -vvv
