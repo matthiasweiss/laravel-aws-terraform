@@ -22,7 +22,7 @@ RUN apt-get update
 RUN apt-get -y --no-install-recommends install npm
 
 COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
-RUN composer install --no-scripts
+RUN composer install --no-scripts -vvv
 
 RUN php artisan migrate
 RUN npm install
