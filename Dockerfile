@@ -21,6 +21,8 @@ COPY . /app
 RUN apt-get update
 RUN apt-get -y --no-install-recommends install npm
 
+RUN composer -n install --no-scripts --ignore-platform-reqs --no-dev
+
 RUN php artisan migrate
 RUN npm install
 RUN npm run build
