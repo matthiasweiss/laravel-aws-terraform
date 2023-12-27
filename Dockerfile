@@ -28,6 +28,5 @@ RUN composer install --no-scripts
 RUN npm install
 RUN npm run build
 
-RUN php artisan event:cache
-RUN php artisan route:cache
-RUN php artisan view:cache
+COPY ./scripts/docker-entrypoint.sh ./docker-entrypoint.sh
+CMD ./docker-entrypoint.sh
