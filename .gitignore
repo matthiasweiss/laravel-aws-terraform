@@ -23,3 +23,6 @@ frankenphp
 frankenphp-worker.php
 
 .DS_Store
+
+infrastructure/.terraform
+infrastructure/.terraform.lock.hcl
