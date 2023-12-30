@@ -16,7 +16,7 @@ resource "aws_ecs_service" "service" {
   health_check_grace_period_seconds = 30
 
   network_configuration {
-    subnets         = [aws_subnet.private_subnet_az_a.id, aws_subnet.private_subnet_az_b.id]
+    subnets         = [aws_subnet.public_subnet_az_a.id, aws_subnet.public_subnet_az_b.id]
     security_groups = [aws_security_group.ecs_security_group.id]
   }
 
@@ -33,7 +33,7 @@ resource "aws_ecs_task_definition" "laravel_app" {
   network_mode             = "awsvpc"
   cpu                      = 256
   memory                   = 512
-  task_role_arn            = aws_iam_role.ecs_role.arn
+  execution_role_arn       = aws_iam_role.ecs_role.arn
   container_definitions = jsonencode([
     {
       name  = "aws-ccp-laravel-app"

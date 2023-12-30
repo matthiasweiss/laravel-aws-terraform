@@ -62,26 +62,26 @@ resource "aws_route_table_association" "public_subnet_az_b_association" {
   route_table_id = aws_route_table.secondary.id
 }
 
-resource "aws_eip" "eip_az_a" {
-  domain     = "vpc"
-  depends_on = [aws_internet_gateway.internet_gateway]
-}
+# resource "aws_eip" "eip_az_a" {
+#   domain     = "vpc"
+#   depends_on = [aws_internet_gateway.internet_gateway]
+# }
 
-resource "aws_nat_gateway" "nat_gateway_az_a" {
-  allocation_id = aws_eip.eip_az_a.id
-  subnet_id     = aws_subnet.public_subnet_az_a.id
+# resource "aws_nat_gateway" "nat_gateway_az_a" {
+#   allocation_id = aws_eip.eip_az_a.id
+#   subnet_id     = aws_subnet.public_subnet_az_a.id
 
-  depends_on = [aws_internet_gateway.internet_gateway]
-}
+#   depends_on = [aws_internet_gateway.internet_gateway]
+# }
 
-resource "aws_eip" "eip_az_b" {
-  domain     = "vpc"
-  depends_on = [aws_internet_gateway.internet_gateway]
-}
+# resource "aws_eip" "eip_az_b" {
+#   domain     = "vpc"
+#   depends_on = [aws_internet_gateway.internet_gateway]
+# }
 
-resource "aws_nat_gateway" "nat_gateway_az_b" {
-  allocation_id = aws_eip.eip_az_b.id
-  subnet_id     = aws_subnet.public_subnet_az_b.id
+# resource "aws_nat_gateway" "nat_gateway_az_b" {
+#   allocation_id = aws_eip.eip_az_b.id
+#   subnet_id     = aws_subnet.public_subnet_az_b.id
 
-  depends_on = [aws_internet_gateway.internet_gateway]
-}
+#   depends_on = [aws_internet_gateway.internet_gateway]
+# }
