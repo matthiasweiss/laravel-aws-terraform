@@ -62,6 +62,8 @@ resource "aws_route_table_association" "public_subnet_az_b_association" {
   route_table_id = aws_route_table.secondary.id
 }
 
+# TODO: figure out how to make container access image
+
 # resource "aws_eip" "eip_az_a" {
 #   domain     = "vpc"
 #   depends_on = [aws_internet_gateway.internet_gateway]
