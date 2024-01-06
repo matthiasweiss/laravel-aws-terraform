@@ -16,8 +16,8 @@ resource "aws_ecs_service" "service" {
   health_check_grace_period_seconds = 30
 
   network_configuration {
-    subnets          = [aws_subnet.private_subnet_az_a.id, aws_subnet.private_subnet_az_b.id]
-    security_groups  = [aws_security_group.ecs_security_group.id]
+    subnets         = [aws_subnet.private_subnet_az_a.id, aws_subnet.private_subnet_az_b.id]
+    security_groups = [aws_security_group.ecs_security_group.id]
   }
 
   load_balancer {
@@ -37,7 +37,7 @@ resource "aws_ecs_task_definition" "laravel_app" {
   container_definitions = jsonencode([
     {
       name  = "aws-ccp-laravel-app"
-      image = "988434678843.dkr.ecr.eu-central-1.amazonaws.com/aws-ccp-laravel:latest"
+      image = "ghcr.io/matthiasweiss/aws-ccp-laravel:main"
       portMappings = [
         {
           containerPort = 80
