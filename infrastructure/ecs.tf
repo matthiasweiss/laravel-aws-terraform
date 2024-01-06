@@ -50,6 +50,10 @@ resource "aws_ecs_task_definition" "laravel_app" {
           value = timestamp()
         },
         {
+          name  = "APP_URL",
+          value = "https://${aws_lb.alb.dns_name}"
+        },
+        {
           name  = "APP_KEY",
           value = var.laravel_app_key
         },
