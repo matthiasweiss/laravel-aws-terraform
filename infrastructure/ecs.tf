@@ -22,7 +22,7 @@ resource "aws_ecs_service" "service" {
 
   load_balancer {
     container_name   = "aws-ccp-laravel-app"
-    container_port   = 80
+    container_port   = 443
     target_group_arn = aws_lb_target_group.alb_target_group.arn
   }
 }
@@ -33,15 +33,14 @@ resource "aws_ecs_task_definition" "laravel_app" {
   network_mode             = "awsvpc"
   cpu                      = 256
   memory                   = 512
-  execution_role_arn       = aws_iam_role.ecs_role.arn
   container_definitions = jsonencode([
     {
       name  = "aws-ccp-laravel-app"
       image = "ghcr.io/matthiasweiss/aws-ccp-laravel:main"
       portMappings = [
         {
-          containerPort = 80
-          hostPort      = 80
+          containerPort = 443
+          hostPort      = 443
           protocol      = "tcp"
         },
       ]

@@ -71,8 +71,7 @@ resource "aws_route_table" "private_az_b" {
 }
 
 resource "aws_eip" "eip_az_a" {
-  domain = "vpc"
-
+  domain     = "vpc"
   depends_on = [aws_internet_gateway.internet_gateway]
 }
 
