@@ -41,8 +41,6 @@ resource "aws_ecs_task_definition" "laravel_app" {
       portMappings = [
         {
           containerPort = 443
-          hostPort      = 443
-          protocol      = "tcp"
         },
       ]
       environment = [
