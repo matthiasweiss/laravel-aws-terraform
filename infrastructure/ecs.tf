@@ -36,7 +36,8 @@ resource "aws_ecs_task_definition" "laravel_app" {
   container_definitions = jsonencode([
     {
       name  = "aws-ccp-laravel-app"
-      image = "ghcr.io/matthiasweiss/aws-ccp-laravel:main"
+      image = "dunglas/frankenphp"
+      # image = "ghcr.io/matthiasweiss/aws-ccp-laravel:main"
       portMappings = [
         {
           containerPort = 443

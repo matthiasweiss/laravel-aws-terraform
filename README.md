@@ -11,3 +11,4 @@ The following environment variables have to be set when running `terraform plan/
 
 - `TF_VAR_rds_password` password for the root user of the MariaDB database
 - `TF_VAR_laravel_app_key` app key for the Laravel app
+- `TF_VAR_alb_certificate_arn` ARN of a (self signed) certificate in ACM
