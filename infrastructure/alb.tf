@@ -7,6 +7,10 @@ resource "aws_lb" "alb" {
   load_balancer_type = "application"
   security_groups    = [aws_security_group.alb_sg.id]
   subnets            = [aws_subnet.public_subnet_az_a.id, aws_subnet.public_subnet_az_b.id]
+  access_logs {
+    bucket  = aws_s3_bucket.alb_access_logs.bucket
+    enabled = true
+  }
 }
 
 output "alb_url" {
@@ -97,6 +101,7 @@ resource "aws_lb_target_group" "alb_target_group" {
   depends_on  = [aws_lb.alb]
   port        = 443
   protocol    = "HTTPS"
+  protocol_version = "HTTP2"
   vpc_id      = aws_vpc.default_vpc.id
   target_type = "ip"
 

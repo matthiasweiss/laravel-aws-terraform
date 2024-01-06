@@ -1,7 +1,3 @@
-variable "laravel_app_key" {
-  type = string
-}
-
 resource "aws_ecs_cluster" "cluster" {
   name = "aws-ccp-laravel-cluster"
 }
@@ -27,12 +23,16 @@ resource "aws_ecs_service" "service" {
   }
 }
 
+variable "laravel_app_key" {
+  type = string
+}
+
 resource "aws_ecs_task_definition" "laravel_app" {
   family                   = "service"
   requires_compatibilities = ["FARGATE"]
   network_mode             = "awsvpc"
-  cpu                      = 256
-  memory                   = 512
+  cpu                      = 512
+  memory                   = 1024
   container_definitions = jsonencode([
     {
       name  = "aws-ccp-laravel-app"
