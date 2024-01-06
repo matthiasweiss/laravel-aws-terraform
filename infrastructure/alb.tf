@@ -102,6 +102,7 @@ resource "aws_lb_target_group" "alb_target_group" {
   port        = 8000
   protocol    = "HTTP"
   vpc_id      = aws_vpc.default_vpc.id
+  target_type = "ip"
 
   health_check {
     timeout  = 10
