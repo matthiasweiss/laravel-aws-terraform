@@ -99,7 +99,7 @@ resource "aws_lb_listener_rule" "https_listener_rule" {
 
 resource "aws_lb_target_group" "alb_target_group" {
   depends_on  = [aws_lb.alb]
-  port        = 8000
+  port        = 80
   protocol    = "HTTP"
   vpc_id      = aws_vpc.default_vpc.id
   target_type = "ip"
