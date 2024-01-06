@@ -18,7 +18,7 @@ resource "aws_ecs_service" "service" {
 
   load_balancer {
     container_name   = "aws-ccp-laravel-app"
-    container_port   = 80
+    container_port   = 443
     target_group_arn = aws_lb_target_group.alb_target_group.arn
   }
 }
@@ -40,8 +40,8 @@ resource "aws_ecs_task_definition" "laravel_app" {
       image = "ghcr.io/matthiasweiss/aws-ccp-laravel:main"
       portMappings = [
         {
-          containerPort = 80
-          hostPort      = 80
+          containerPort = 443
+          hostPort      = 443
         },
       ]
       environment = [
@@ -77,6 +77,10 @@ resource "aws_ecs_task_definition" "laravel_app" {
           name  = "DB_PASSWORD",
           value = var.rds_password
         },
+        {
+          name = "OCTANE_HTTPS",
+          value = "true"
+        }
       ]
     }
   ])
