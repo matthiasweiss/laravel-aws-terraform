@@ -12,7 +12,7 @@ The aim is to better understand the services used by setting up an infrastructur
 
 ## Docs
 
-The [Dockerfile](Dockerfile) makes use of [FrankenPHP](https://frankenphp.dev) and installs all of the required PHP extensions, [git](https://git-scm.com) and [npm](https://www.npmjs.com). It then installs the [composer](https://getcomposer.org) and npm dependencies. When the container is started the [./scripts/docker-entrypoint.sh](./scripts/docker-entrypoint.sh) script is called, which sets up caching, migrates the database and starts the server.
+The [Dockerfile](Dockerfile) makes use of [FrankenPHP](https://frankenphp.dev) and installs all of the required PHP extensions, [git](https://git-scm.com) and [npm](https://www.npmjs.com). It then installs the [composer](https://getcomposer.org) and npm dependencies. When the container is started the database is migrated before the server is started.
 
 The following environment variables have to be set when running `terraform plan/apply`:
 
