@@ -1,3 +1,4 @@
+# dunglas/frankenphp image is used for convenience, FrankenPHP is used through Laravel Octane
 FROM dunglas/frankenphp
 
 # https://laravel.com/docs/10.x/deployment#server-requirements
@@ -11,6 +12,7 @@ RUN install-php-extensions \
     mbstring \
     openssl \
     pcre \
+    pcntl \
     pdo_mysql \
     session \
     tokenizer \
@@ -29,4 +31,5 @@ RUN npm install
 RUN npm run build
 
 COPY ./scripts/docker-entrypoint.sh ./docker-entrypoint.sh
+
 CMD ./docker-entrypoint.sh

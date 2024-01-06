@@ -2,6 +2,6 @@ php artisan event:cache
 php artisan route:cache
 php artisan view:cache
 
-php artisan migrate
+php artisan migrate --force
 
-docker-php-entrypoint --config /etc/caddy/Caddyfile --adapter caddyfile
+php artisan octane:frankenphp --max-requests=1
