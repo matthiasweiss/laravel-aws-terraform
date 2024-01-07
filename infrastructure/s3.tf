@@ -1,4 +1,5 @@
 resource "aws_s3_bucket" "alb_access_logs" {
+  bucket = "${var.application_name}-alb-logs"
   force_destroy = true
 }
 

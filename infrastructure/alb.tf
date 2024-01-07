@@ -3,6 +3,7 @@ resource "aws_security_group" "alb_sg" {
 }
 
 resource "aws_lb" "alb" {
+  name = "${var.application_name}-alb"
   internal           = false
   load_balancer_type = "application"
   security_groups    = [aws_security_group.alb_sg.id]
@@ -99,6 +100,7 @@ resource "aws_lb_listener_rule" "https_listener_rule" {
 }
 
 resource "aws_lb_target_group" "alb_target_group" {
+  name = "${var.application_name}-alb-target-group"
   depends_on  = [aws_lb.alb]
   port        = 80
   protocol    = "HTTP"

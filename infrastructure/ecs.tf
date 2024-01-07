@@ -1,9 +1,9 @@
 resource "aws_ecs_cluster" "cluster" {
-  name = "aws-ccp-laravel-cluster"
+name = "${var.application_name}-cluster"
 }
 
 resource "aws_ecs_service" "service" {
-  name                              = "aws-ccp-laravel-service"
+  name = "${var.application_name}-service"
   cluster                           = aws_ecs_cluster.cluster.id
   task_definition                   = aws_ecs_task_definition.laravel_app.arn
   desired_count                     = 1
@@ -18,7 +18,7 @@ resource "aws_ecs_service" "service" {
   }
 
   load_balancer {
-    container_name   = "aws-ccp-laravel-app"
+    container_name = "${var.application_name}-container"
     container_port   = 80
     target_group_arn = aws_lb_target_group.alb_target_group.arn
   }
@@ -37,7 +37,6 @@ resource "aws_ecs_task_definition" "laravel_app" {
   container_definitions = jsonencode([
     {
       name = "aws-ccp-laravel-app"
-      # image = "tutum/hello-world"
       image = "ghcr.io/matthiasweiss/aws-ccp-laravel:main"
       portMappings = [
         {

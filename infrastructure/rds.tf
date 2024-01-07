@@ -9,7 +9,7 @@ variable "rds_password" {
 
 variable "rds_database" {
   type    = string
-  default = "aws_ccp_laravel"
+  default = var.application_name
 }
 
 resource "aws_db_instance" "mariadb" {
