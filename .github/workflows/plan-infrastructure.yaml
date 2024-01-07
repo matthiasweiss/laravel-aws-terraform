@@ -1,4 +1,4 @@
-name: Update Infrastructure
+name: Plan Infrastructure
 
 on: workflow_dispatch
 
