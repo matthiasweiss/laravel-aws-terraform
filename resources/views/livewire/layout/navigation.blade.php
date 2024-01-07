@@ -87,6 +87,10 @@ $logout = function (Logout $logout) {
                     <x-nav-link :href="route('login')" wire:navigate>
                         {{ __('Log In') }}
                     </x-nav-link>
+
+                    <x-nav-link :href="route('register')" wire:navigate>
+                        {{ __('Register') }}
+                    </x-nav-link>
                 </div>
             @endif
         </div>
