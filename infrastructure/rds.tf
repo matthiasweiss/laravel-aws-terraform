@@ -22,7 +22,7 @@ resource "aws_db_instance" "mariadb" {
   password             = var.rds_password
   db_subnet_group_name = aws_db_subnet_group.rds_db_default_subnet_group.name
   skip_final_snapshot  = true
-  vpc_security_group_ids = [aws_security_group.rds_sg]
+  vpc_security_group_ids = [aws_security_group.rds_sg.id]
 }
 
 resource "aws_security_group" "rds_sg" {
