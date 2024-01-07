@@ -2,7 +2,7 @@
 
 I've created this project to better understand the services used by by this infrastructure in order to prepare for the [AWS CCP exam](https://aws.amazon.com/certification/certified-cloud-practitioner).
 
-Disclaimer: this type of infrastructure is absolutely unnecessary for a simple web application, it would be much easier and cheaper to host the server on [EC2](https://aws.amazon.com/ec2) or [Lightsail](https://aws.amazon.com/lightsail)
+Disclaimer: this type of infrastructure is not necessary for a simple web application, it would be much easier and cheaper to host the server on something like [Lightsail](https://aws.amazon.com/lightsail) or [DigitalOcean](https://www.digitalocean.com).
 
 # Goals
 
@@ -23,4 +23,4 @@ The infrastructure is planned and provisioned using `terraform plan` and `terraf
 
 # Notes
 
-The initial version of this project had the ECS service in private subnets and a NAT gateway to enable outbound internet traffic. While this was the most obvious solution for me at the time, it turned out to be unnecessarily complex and expensive (the cost of NAT gateways is very high compared to the rest of the services, especially considering that each availability zone requires its own one). I've re-structured the infrastructure to drop the NAT gateways and moved the ECS service into the public subnets. Security groups make sure that the ECS service is only accessible by the load balancer. The original infrastructure can be found in the `private_subnets_and_nat_gateways` branch.
+The initial version of this project had the ECS service in private subnets and a NAT gateway to enable outbound internet traffic. While this was the most obvious solution for me at the time, it turned out to be unnecessarily complex and expensive (the cost of NAT gateways is very high compared to the rest of the services, especially considering that each availability zone requires its own one). I have dropped the NAT gateways and moved the ECS service into the public subnets. Security groups make sure that the ECS service is only accessible by the load balancer. The RDS database remains in the private subnets. The original infrastructure can be found in the `private_subnets_and_nat_gateways` branch.
