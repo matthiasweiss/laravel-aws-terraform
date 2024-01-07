@@ -105,10 +105,10 @@ resource "aws_lb_target_group" "alb_target_group" {
   target_type = "ip"
 
   health_check {
-    timeout  = 10
-    interval = 15
+    timeout  = 15
+    interval = 20
     path     = "/"
-    protocol = "HTTP"
+    protocol = "HTTPS"
     matcher  = "200-404"
   }
 }
