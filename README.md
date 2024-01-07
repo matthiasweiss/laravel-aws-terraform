@@ -20,3 +20,7 @@ The infrastructure is planned and provisioned using `terraform plan` and `terraf
 - `TF_VAR_rds_password` password for the admin user of the MariaDB database
 - `TF_VAR_laravel_app_key` app key for the Laravel app
 - `TF_VAR_alb_certificate_arn` [ARN](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference-arns.html) of a (self signed) certificate in [ACM](https://aws.amazon.com/certificate-manager)
+
+# Notes
+
+The initial version of this project had the ECS service and RDS database in private subnets and a NAT gateway to enable outbound internet traffic. This was the most obvious solution for me at the time. I've re-structured the infrastructure to drop these private subnets and NAT gateways and put the ECS service and RDS database into a public subnet. Security groups make sure that the ECS service is only accessible by the load balancer and the database is only accessible by the ECS service.
