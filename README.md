@@ -13,7 +13,7 @@ Disclaimer: this type of infrastructure is not necessary for a simple web applic
 
 # How it works
 
-The [Dockerfile](Dockerfile) makes use of [FrankenPHP](https://frankenphp.dev) and installs all of the required PHP extensions, [git](https://git-scm.com) and [npm](https://www.npmjs.com). It then installs the [composer](https://getcomposer.org) and npm dependencies. When the container is started the database is migrated before the server is started. The Docker image is automatically built using a [GitHub action](./.github/workflows/publish-image.yaml)
+The [Dockerfile](Dockerfile) makes use of [FrankenPHP](https://frankenphp.dev) and installs all of the required PHP extensions, [git](https://git-scm.com) and [npm](https://www.npmjs.com). It then installs the [composer](https://getcomposer.org) and npm dependencies. When the container is started the database is migrated before the server is started. The Docker image is automatically built on each push to the main branch via the [Publish Image](./.github/workflows/publish-image.yaml) workflow.
 
 The infrastructure is planned and provisioned using `terraform plan` and `terraform apply` respectively. In order to be able to use Terraform to provision resources in AWS, the `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` environment variables have to be set with valid keys. I created an IAM user with the required policies for this infrastructure and subsequently generated access keys for this user. Additionally, the following environment variables have to be set for both commands to work locally:
 
@@ -22,7 +22,13 @@ The infrastructure is planned and provisioned using `terraform plan` and `terraf
 - `TF_VAR_LARAVEL_APP_KEY` app key for the Laravel app
 - `TF_VAR_ALB_CERTIFICATE_ARN` [ARN](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference-arns.html) of a (self signed) certificate in [ACM](https://aws.amazon.com/certificate-manager)
 
-I have also added these environment variables as repository secrets / variables (depending on if they should be encrypted or not), so that they can be accessed inside a [GitHub action](.github/workflows/update-infrastructure.yaml).
+I have also added these environment variables as repository secrets / variables (sensitive values are stored as secrets, "regular" values as variables), so that they can be accessed inside the various workflows.
+
+The infrastructure can be planned, provisioned and destroyed using the following three workflows:
+
+- [Plan Infrastructure](.github/workflows/plan_infrastructure.yaml)
+- [Update Infrastructure](.github/workflows/update_infrastructure.yaml)
+- [Destroy Infrastructure](.github/workflows/destroy_infrastructure.yaml)
 
 # Notes
 
