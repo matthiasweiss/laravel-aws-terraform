@@ -62,7 +62,7 @@ resource "aws_security_group_rule" "alb_allow_ingress_https" {
   cidr_blocks       = ["0.0.0.0/0"]
 }
 
-variable "alb_certificate_arn" {
+variable "ALB_CERTIFICATE_ARN" {
   type = string
 }
 
@@ -71,7 +71,7 @@ resource "aws_lb_listener" "https_listener" {
   port              = 443
   protocol          = "HTTPS"
   ssl_policy        = "ELBSecurityPolicy-FS-1-2-Res-2020-10"
-  certificate_arn   = var.alb_certificate_arn
+  certificate_arn   = var.ALB_CERTIFICATE_ARN
 
   default_action {
     type = "fixed-response"

@@ -24,7 +24,7 @@ resource "aws_ecs_service" "service" {
   }
 }
 
-variable "laravel_app_key" {
+variable "LARAVEL_APP_KEY" {
   type = string
 }
 
@@ -63,7 +63,7 @@ resource "aws_ecs_task_definition" "laravel_app" {
         },
         {
           name  = "APP_KEY",
-          value = var.laravel_app_key
+          value = var.LARAVEL_APP_KEY
         },
         {
           name  = "DB_CONNECTION",
@@ -87,7 +87,7 @@ resource "aws_ecs_task_definition" "laravel_app" {
         },
         {
           name  = "DB_PASSWORD",
-          value = var.rds_password
+          value = var.RDS_PASSWORD
         },
         {
           name  = "OCTANE_HTTPS",
