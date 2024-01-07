@@ -1,4 +1,4 @@
-name: "AWS: Plan Infrastructure"
+name: Plan Infrastructure
 
 on: workflow_dispatch
 
