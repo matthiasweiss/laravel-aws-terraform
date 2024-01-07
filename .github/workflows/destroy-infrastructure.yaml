@@ -18,5 +18,5 @@ jobs:
     steps:
       - name: Set up Terraform
         uses: hashicorp/setup-terraform@v3
-      - name: Update Infrastructure
-        run: terraform apply
+      - name: Destroy Infrastructure
+        run: terraform destroy

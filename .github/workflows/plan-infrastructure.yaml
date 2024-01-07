@@ -11,12 +11,12 @@ env:
   TF_VAR_alb_certificate_arn: ${{ vars.TF_VAR_alb_certificate_arn }}
 
 jobs:
-  destroy-infrastructure:
+  plan-infrastructure:
     runs-on: ubuntu-latest
     permissions:
       contents: read
     steps:
       - name: Set up Terraform
         uses: hashicorp/setup-terraform@v3
-      - name: Update Infrastructure
-        run: terraform apply
+      - name: Plan Infrastructure
+        run: terraform plan
