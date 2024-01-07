@@ -1,4 +1,4 @@
-# returns availabe availability zones for current region
+# returns all available availability zones for current region
 data "aws_availability_zones" "available" {}
 
 resource "aws_vpc" "default_vpc" {
