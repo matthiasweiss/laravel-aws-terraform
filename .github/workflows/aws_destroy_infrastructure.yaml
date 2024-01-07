@@ -1,4 +1,4 @@
-name: Update Infrastructure
+name: "AWS: Destroy Infrastructure"
 
 on: workflow_dispatch
 
@@ -20,6 +20,6 @@ jobs:
         uses: hashicorp/setup-terraform@v3
       - name: Checkout repository
         uses: actions/checkout@v4
-      - name: Update Infrastructure
+      - name: Destroy Infrastructure
         working-directory: ./infrastructure
-        run: terraform init && terraform apply -auto-approve
+        run: terraform init && terraform destroy -auto-approve
