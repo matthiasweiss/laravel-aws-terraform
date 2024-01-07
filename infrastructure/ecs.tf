@@ -12,8 +12,8 @@ resource "aws_ecs_service" "service" {
   health_check_grace_period_seconds = 30
 
   network_configuration {
-    subnets         = [aws_subnet.private_subnet_az_a.id, aws_subnet.private_subnet_az_b.id]
-    security_groups = [aws_security_group.ecs_security_group.id]
+    subnets         = [aws_subnet.subnet_az_a.id, aws_subnet.subnet_az_b.id]
+    security_groups = [aws_security_group.ecs_sg.id]
   }
 
   load_balancer {
@@ -35,7 +35,7 @@ resource "aws_ecs_task_definition" "laravel_app" {
   memory                   = 1024
   container_definitions = jsonencode([
     {
-      name  = "aws-ccp-laravel-app"
+      name = "aws-ccp-laravel-app"
       # image = "tutum/hello-world"
       image = "ghcr.io/matthiasweiss/aws-ccp-laravel:main"
       portMappings = [
@@ -90,11 +90,11 @@ resource "aws_ecs_task_definition" "laravel_app" {
           value = var.rds_password
         },
         {
-          name = "OCTANE_HTTPS",
+          name  = "OCTANE_HTTPS",
           value = "true"
         },
         {
-          name = "SESSION_SECURE_COOKIE",
+          name  = "SESSION_SECURE_COOKIE",
           value = "true"
         }
       ]
@@ -102,13 +102,13 @@ resource "aws_ecs_task_definition" "laravel_app" {
   ])
 }
 
-resource "aws_security_group" "ecs_security_group" {
+resource "aws_security_group" "ecs_sg" {
   vpc_id = aws_vpc.default_vpc.id
 }
 
 resource "aws_security_group_rule" "ecs_server_allow_outbound" {
   description       = "All outbound"
-  security_group_id = aws_security_group.ecs_security_group.id
+  security_group_id = aws_security_group.ecs_sg.id
   type              = "egress"
   from_port         = 0
   to_port           = 0
@@ -117,7 +117,7 @@ resource "aws_security_group_rule" "ecs_server_allow_outbound" {
 }
 
 resource "aws_security_group_rule" "ecs_server_allow_inbound_from_alb" {
-  security_group_id        = aws_security_group.ecs_security_group.id
+  security_group_id        = aws_security_group.ecs_sg.id
   type                     = "ingress"
   from_port                = 0
   to_port                  = 0
