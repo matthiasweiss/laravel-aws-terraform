@@ -23,4 +23,4 @@ The infrastructure is planned and provisioned using `terraform plan` and `terraf
 
 # Notes
 
-The initial version of this project had the ECS service and RDS database in private subnets and a NAT gateway to enable outbound internet traffic. This was the most obvious solution for me at the time. I've re-structured the infrastructure to drop these private subnets and NAT gateways and put the ECS service and RDS database into a public subnet. Security groups make sure that the ECS service is only accessible by the load balancer and the database is only accessible by the ECS service.
+The initial version of this project had the ECS service and RDS database in private subnets and a NAT gateway to enable outbound internet traffic. This was the most obvious solution for me at the time. I've re-structured the infrastructure to drop these private subnets and NAT gateways and put the ECS service and RDS database into a public subnet. Security groups make sure that the ECS service is only accessible by the load balancer and the database is only accessible by the ECS service. The original infrastructure can be found in the `private_subnets_and_nat_gateways` branch.
