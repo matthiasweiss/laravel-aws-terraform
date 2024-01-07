@@ -54,6 +54,14 @@ resource "aws_ecs_task_definition" "laravel_app" {
           value = "https://${aws_lb.alb.dns_name}"
         },
         {
+          name  = "APP_DEBUG",
+          value = "true" # set to false for real deployment
+        },
+        {
+          name  = "APP_ENV",
+          value = "development" # set to "production" for real deployment
+        },
+        {
           name  = "APP_KEY",
           value = var.laravel_app_key
         },
@@ -83,6 +91,10 @@ resource "aws_ecs_task_definition" "laravel_app" {
         },
         {
           name = "OCTANE_HTTPS",
+          value = "true"
+        },
+        {
+          name = "SESSION_SECURE_COOKIE",
           value = "true"
         }
       ]
