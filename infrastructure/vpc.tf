@@ -1,5 +1,6 @@
-# returns all available availability zones for current region
-data "aws_availability_zones" "available" {}
+data "aws_availability_zones" "available" {
+  state = "available"
+}
 
 resource "aws_vpc" "default_vpc" {
   cidr_block = "10.0.0.0/16"
