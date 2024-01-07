@@ -6,7 +6,7 @@ resource "aws_lb" "alb" {
   internal           = false
   load_balancer_type = "application"
   security_groups    = [aws_security_group.alb_sg.id]
-  subnets            = [aws_subnet.subnet_az_a.id, aws_subnet.subnet_az_b.id]
+  subnets            = [aws_subnet.public_subnet_az_a.id, aws_subnet.public_subnet_az_b.id]
 
   access_logs {
     bucket  = aws_s3_bucket.alb_access_logs.bucket

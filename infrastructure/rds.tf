@@ -1,5 +1,5 @@
 resource "aws_db_subnet_group" "rds_db_default_subnet_group" {
-  subnet_ids = [aws_subnet.subnet_az_a.id, aws_subnet.subnet_az_b.id]
+  subnet_ids = [aws_subnet.private_subnet_az_a.id, aws_subnet.private_subnet_az_b.id]
 }
 
 # Password is stored in TF_VAR_rds_password environment variable
@@ -45,5 +45,5 @@ resource "aws_security_group_rule" "rds_allow_outbound" {
   from_port         = 0
   to_port           = 0
   protocol          = "all"
-  cidr_blocks       = [aws_subnet.subnet_az_a.cidr_block, aws_subnet.subnet_az_b.cidr_block]
+  cidr_blocks       = [aws_subnet.public_subnet_az_a.cidr_block, aws_subnet.public_subnet_az_b.cidr_block]
 }
