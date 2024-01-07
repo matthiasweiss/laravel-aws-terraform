@@ -1,6 +1,6 @@
-# dunglas/frankenphp image is used for convenience, FrankenPHP is used through Laravel Octane
 FROM dunglas/frankenphp
 
+# Pretty sure some of these have already been installed, but better be safe than sorry
 # https://laravel.com/docs/10.x/deployment#server-requirements
 RUN install-php-extensions \
     ctype \
