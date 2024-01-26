@@ -1,6 +1,6 @@
 # Intro
 
-I've created this project to better understand the services used by by this infrastructure in order to prepare for the [AWS CCP exam](https://aws.amazon.com/certification/certified-cloud-practitioner).
+I've created this project to better understand the services used by this infrastructure in order to prepare for the [AWS CCP exam](https://aws.amazon.com/certification/certified-cloud-practitioner).
 
 Disclaimer: this type of infrastructure is not necessary for a simple web application, it would be much easier and cheaper to host the server on something like [Lightsail](https://aws.amazon.com/lightsail) or [DigitalOcean](https://www.digitalocean.com).
 

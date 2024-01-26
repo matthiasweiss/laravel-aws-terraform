@@ -37,7 +37,7 @@ resource "aws_ecs_task_definition" "laravel_app" {
   container_definitions = jsonencode([
     {
       name = "${var.application_name}-container"
-      image = "ghcr.io/matthiasweiss/aws-ccp-laravel:main"
+      image = "ghcr.io/matthiasweiss/laravel-aws-terraform:main"
       portMappings = [
         {
           containerPort = 80

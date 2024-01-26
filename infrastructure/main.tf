@@ -1,6 +1,6 @@
 terraform {
   backend "s3" {
-    bucket  = "aws-ccp-laravel-terraform"
+    bucket  = "laravel-aws-terraform-terraform"
     key     = "terraform.tfstate"
     region  = "eu-central-1"
     encrypt = true
@@ -25,5 +25,5 @@ provider "aws" {
 
 variable "application_name" {
   type = string
-  default = "aws-ccp-laravel"
+  default = "laravel-aws-terraform"
 }
